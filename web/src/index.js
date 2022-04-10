@@ -6,11 +6,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+const APIURL = 'https://api-mumbai.lens.dev/';
+
+export const apolloClient = new ApolloClient({
+	uri: APIURL,
+	cache: new InMemoryCache(),
+});
+
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<ApolloProvider client={apolloClient}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</ApolloProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
