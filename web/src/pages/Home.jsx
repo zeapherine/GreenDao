@@ -31,21 +31,21 @@ const Home = () => {
 					<Card
 						title='Create your Idea into a project, and let others join in to make the
 				world a better place'
-						buttonTitle={'Create your project'}
+						buttonTitle={'Create your Bounty'}
 						path={'/create'}
 					/>
 
-					<Card
+					{/* <Card
 						title='Fund Projects and get voting powers'
-						buttonTitle={'Fund Projects'}
+						buttonTitle={'Fund Bounty'}
 						path={'/'}
-					/>
+					/> */}
 
-					<Card
+					{/* <Card
 						title='Work on project bounties'
 						buttonTitle={'Bounties'}
 						path={'/bounties'}
-					/>
+					/> */}
 				</div>
 			</div>
 

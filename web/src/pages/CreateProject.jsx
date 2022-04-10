@@ -3,6 +3,8 @@ import { NFTStorage } from 'nft.storage';
 import { useState } from 'react';
 import axios from 'axios';
 import image from '../assets/image.jpeg';
+import { createBounty } from '../utils/interact';
+
 
 
 const CreateProject = () => {
@@ -13,22 +15,25 @@ const CreateProject = () => {
 	const client = new NFTStorage({ token: NFT_STORAGE_TOKEN })
 	
 	const submit = async () => {
-		
-		// const someData = new Blob([{name, desc}]);
-		// const cid = await client.store(someData);
-		
-		// console.log(cid);
-
-		
-
 		const imageFile = new File([ image  ], 'nft.jpeg', { type: 'image/jpeg' })
 		const metadata = await client.store({
   			name: name,
   			description: desc,
 			image: imageFile	
 		})
-		console.log(metadata);
+		return {
+			uri: metadata.url,
+			data: metadata.data,
+		}
 	}
+
+	const submitBounty = async () => {
+		const {uri, data}	= submit();
+		createBounty(uri);
+
+		
+	}
+
 
 	const get = async () => {
 	await 	axios.get('https://ipfs.io/ipfs/bafkreifsrsklegk4r3jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee')
@@ -39,12 +44,12 @@ const CreateProject = () => {
 	return (
 		<div className='mt-10'>
 			<div className='flex flex-col justify-between items-center'>
-				<h1 className='text-4xl'>Create Your Project</h1>
+				<h1 className='text-4xl'>Create Bounty</h1>
 				<div className='flex flex-col justify-between items-start mt-8'>
 					<input
 						className='text-black outline-none p-3  mb-6 w-full'
 						type='text'
-						placeholder='Project Name'
+						placeholder='Bounty Name'
 						onChange={(e) =>setName(e.target.value)}
 					/>
 
@@ -62,7 +67,7 @@ const CreateProject = () => {
 						placeholder='Amount to contribute'
 					/>
 
-					<Button onClick={()=>submit()} className='bg-slate-800'>Create Project</Button>
+					<Button onClick={()=>submit()} className='bg-slate-800'>Create Bounty</Button>
 					<Button onClick={()=>get()} className='bg-slate-800'>Get Project</Button>
 				</div>
 			</div>
