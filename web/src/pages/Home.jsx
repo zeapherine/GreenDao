@@ -1,6 +1,7 @@
 import { Button } from '@mantine/core';
 import Card from '../components/Card';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import Bounties from './Bounties';
 
 const Home = () => {
 	return (
@@ -43,10 +44,12 @@ const Home = () => {
 					<Card
 						title='Work on project bounties'
 						buttonTitle={'Bounties'}
-						path={'/'}
+						path={'/bounties'}
 					/>
 				</div>
 			</div>
+
+			<Bounties />
 
 			<div className='flex mt-24'>
 				<h2 className='min-w-max text-2xl font-bold'>The Vison</h2>
