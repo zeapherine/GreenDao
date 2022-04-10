@@ -60,42 +60,43 @@ const Navbar = () => {
 
 	// Render Methods
 	const renderNotConnectedContainer = () => (
-		<button
-			onClick={connectWallet}
-			className='ml-24 mt-4 py-2 px-3 rounded-full bg-pink-500 text-white'
+		// <button
+		// 	onClick={connectWallet}
+		// 	className='ml-24 mt-4 py-2 px-3 rounded-full bg-pink-500 text-white'
+		// >
+		// 	Connect Wallet
+		// </button>
+		<Button
+			onClick={() => {
+				login().then((result) => console.log(result));
+			}}
+			className='bg-slate-800'
 		>
-			Connect Wallet
-		</button>
+			Authenticate Wallet
+		</Button>
 	);
 
 	useEffect(() => {
 		checkIfWalletIsConnected();
-	}, []);
+	}, [currentAccount]);
 
 	return (
 		<div className='flex justify-between items-start'>
 			<div className='flex'>
-				<h2 onClick={() => navigate('/')} className='text-4xl font-bold'>
+				<h2
+					onClick={() => navigate('/')}
+					className='text-4xl font-bold cursor-pointer'
+				>
 					GreenDAO
 				</h2>
-
-				<div className='flex flex-col justify-start items-start ml-44'>
-					<h3 className='mb-3'>Why DAO?</h3>
-					<h3 className='mb-3'>Management token</h3>
-					<h3>Tokenomics</h3>
-				</div>
-				<div className='flex flex-col justify-start items-start ml-10'>
-					<h3 className='mb-3'>Partnerships</h3>
-					<h3>Roadmap</h3>
-				</div>
 			</div>
 
-			<Button
+			{/* <Button
 				onClick={() => login().then((result) => console.log(result))}
 				className='bg-slate-800'
 			>
 				Authenticate Wallet with Lens
-			</Button>
+			</Button> */}
 
 			{currentAccount === '' ? (
 				renderNotConnectedContainer()
