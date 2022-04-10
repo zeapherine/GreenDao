@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../utils/authentication/login-user';
+import { Button } from '@mantine/core';
+import { authenticate } from '../utils/authentication/authenticate';
 
 const Navbar = () => {
+	const navigate = useNavigate();
 	const [currentAccount, setCurrentAccount] = useState('');
 
 	const checkIfWalletIsConnected = async () => {
@@ -70,7 +75,9 @@ const Navbar = () => {
 	return (
 		<div className='flex justify-between items-start'>
 			<div className='flex'>
-				<h2 className='text-4xl font-bold'>GreenDAO</h2>
+				<h2 onClick={() => navigate('/')} className='text-4xl font-bold'>
+					GreenDAO
+				</h2>
 
 				<div className='flex flex-col justify-start items-start ml-44'>
 					<h3 className='mb-3'>Why DAO?</h3>
@@ -83,9 +90,12 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			{/* <div className='flex'>
-				
-			</div> */}
+			<Button
+				onClick={() => login().then((result) => console.log(result))}
+				className='bg-slate-800'
+			>
+				Authenticate Wallet with Lens
+			</Button>
 
 			{currentAccount === '' ? (
 				renderNotConnectedContainer()
