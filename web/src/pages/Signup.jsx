@@ -1,6 +1,23 @@
 import React from 'react';
 import { Button } from '@mantine/core';
 
+// const GET_CHALLENGE = `
+//   query($request: ChallengeRequest!) {
+//     challenge(request: $request) { text }
+//   }
+// `;
+
+// const generateChallenge = (address) => {
+// 	return apolloClient.query({
+// 		query: gql(GET_CHALLENGE),
+// 		variables: {
+// 			request: {
+// 				address,
+// 			},
+// 		},
+// 	});
+// };
+
 const Signup = () => {
 	return (
 		<div className='mt-10'>

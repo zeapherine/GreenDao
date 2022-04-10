@@ -2,47 +2,13 @@ import { Button } from '@mantine/core';
 import Card from '../components/Card';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
-import { apolloClient } from '../index';
-import { gql } from '@apollo/client';
 
 const Home = () => {
-	// 	const CREATE_PROFILE = `
-	//   mutation($request: CreateProfileRequest!) {
-	//     createProfile(request: $request) {
-	//       ... on RelayerResult {
-	//         txHash
-	//       }
-	//       ... on RelayError {
-	//         reason
-	//       }
-	//             __typename
-	//     }
-	//  }
-	// `;
-
-	// 	const createProfile = (createProfileRequest) => {
-	// 		return apolloClient.mutate({
-	// 			mutation: gql(CREATE_PROFILE),
-	// 			variables: {
-	// 				request: createProfileRequest,
-	// 			},
-	// 		});
-	// 	};
+	
 
 	return (
 		<div className='mt-10'>
-			<div
-				className='flex flex-col justify-center items-start ml-[320px] p-16 pt-28 '
-				// style={{
-				// 	width: '100%',
-				// 	height: '400px',
-
-				// 	background:
-				// 		'url("https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1313&q=80")',
-
-				// 	backgroundRepeat: 'no-repeat',
-				// }}
-			>
+			<div className='flex flex-col justify-center items-start ml-[320px] p-16 pt-28 '>
 				<h1 className='text-6xl font-normal'>GreenDAO IS A PUBLIC GOODS</h1>
 				<h1 className='text-6xl font-normal'>FUND WITH A PROGRESSIVE</h1>
 				<h1 className='text-6xl font-normal'> COLLABORATION MODEL</h1>
