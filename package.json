@@ -1,11 +1,4 @@
 {
   "name": "hardhat-project",
-  "dependencies": {
-    "@apollo/client": "^3.5.10",
-    "@mantine/core": "^4.1.2",
-    "@mantine/hooks": "^4.1.2",
-    "graphql": "^16.3.0",
-    "react-icons": "^4.3.1",
-    "react-router-dom": "^6.3.0"
-  }
+  "dependencies": {}
 }

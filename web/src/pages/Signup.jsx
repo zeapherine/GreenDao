@@ -1,6 +1,26 @@
 import React from 'react';
 import { Button } from '@mantine/core';
 
+import { apolloClient } from './apollo-client';
+import { gql } from '@apollo/client';
+
+const GET_CHALLENGE = `
+  query($request: ChallengeRequest!) {
+    challenge(request: $request) { text }
+  }
+`;
+
+const generateChallenge = (address) => {
+	return apolloClient.query({
+		query: gql(GET_CHALLENGE),
+		variables: {
+			request: {
+				address,
+			},
+		},
+	});
+};
+
 const Signup = () => {
 	return (
 		<div className='mt-10'>
@@ -13,7 +33,9 @@ const Signup = () => {
 						placeholder='Your Username'
 					/>
 
-					<Button className='bg-slate-800'>Create Profile</Button>
+					<Button onClick={() => generateChallenge()} className='bg-slate-800'>
+						Create Profile
+					</Button>
 				</div>
 			</div>
 		</div>
