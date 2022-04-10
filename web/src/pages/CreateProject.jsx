@@ -1,28 +1,40 @@
 import { Button } from '@mantine/core';
+import { NFTStorage } from 'nft.storage';
+import { useState } from 'react';
+import axios from 'axios';
+import {image} from '../assets/images/nft.jpeg';
 
-// const CREATE_PROJECT = gpl`
-//     mutation CreateProfile {
-//   createProfile(request:{
-//                 handle: "devjoshstevens",
-//                 profilePictureUri: null,
-//                 followNFTURI: null,
-//                 followModule: null
-//                 }) {
-//     ... on RelayerResult {
-//       txHash
-//     }
-//     ... on RelayError {
-//       reason
-//     }
-//     __typename
-//   }
-// }
-// `;
 
 const CreateProject = () => {
-	// const [] = useMutation(CREATE_PROJECT, {
+	const [name, setName] = useState('');
+	const [desc, setDesc] = useState('');
+	
+	const NFT_STORAGE_TOKEN= process.env.REACT_APP_NFT_STORAGE_TOKEN;
+	const client = new NFTStorage({ token: NFT_STORAGE_TOKEN })
+	
+	const submit = async () => {
+		
+		// const someData = new Blob([{name, desc}]);
+		// const cid = await client.store(someData);
+		
+		// console.log(cid);
 
-	// });
+		
+
+		const imageFile = new File([ image  ], 'nft.jpeg', { type: 'image/jpeg' })
+		const metadata = await client.store({
+  			name: name,
+  			description: desc,
+			image: imageFile	
+		})
+		console.log(metadata);
+	}
+
+	const get = async () => {
+	await 	axios.get('https://ipfs.io/ipfs/bafkreifsrsklegk4r3jft4fucwvo4pzzwczjecsfg5qrjgp2arevnel2ee')
+		.then(data => console.log(data.data[0]))
+  		.catch(error => console.log(error));
+	}
 
 	return (
 		<div className='mt-10'>
@@ -33,6 +45,7 @@ const CreateProject = () => {
 						className='text-black outline-none p-3  mb-6 w-full'
 						type='text'
 						placeholder='Project Name'
+						onChange={(e) =>setName(e.target.value)}
 					/>
 
 					<textarea
@@ -40,6 +53,7 @@ const CreateProject = () => {
 						rows={10}
 						cols={50}
 						placeholder='Description'
+						onChange={(e) =>setDesc(e.target.value)}
 					/>
 
 					<input
@@ -48,7 +62,8 @@ const CreateProject = () => {
 						placeholder='Amount to contribute'
 					/>
 
-					<Button className='bg-slate-800'>Create Project</Button>
+					<Button onClick={()=>submit()} className='bg-slate-800'>Create Project</Button>
+					<Button onClick={()=>get()} className='bg-slate-800'>Get Project</Button>
 				</div>
 			</div>
 		</div>
