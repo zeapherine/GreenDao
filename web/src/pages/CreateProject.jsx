@@ -2,7 +2,7 @@ import { Button } from '@mantine/core';
 import { NFTStorage } from 'nft.storage';
 import { useState } from 'react';
 import axios from 'axios';
-import {image} from '../assets/images/nft.jpeg';
+import image from '../assets/image.jpeg';
 
 
 const CreateProject = () => {
