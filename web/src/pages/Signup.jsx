@@ -1,24 +1,12 @@
 import React from 'react';
 import { Button } from '@mantine/core';
-
-// const GET_CHALLENGE = `
-//   query($request: ChallengeRequest!) {
-//     challenge(request: $request) { text }
-//   }
-// `;
-
-// const generateChallenge = (address) => {
-// 	return apolloClient.query({
-// 		query: gql(GET_CHALLENGE),
-// 		variables: {
-// 			request: {
-// 				address,
-// 			},
-// 		},
-// 	});
-// };
+import { login } from '../utils/authentication/login-user';
 
 const Signup = () => {
+	// const { ethereum } = window;
+	// const accounts = ethereum.request({ method: 'eth_accounts' });
+	// const account = accounts[0];
+
 	return (
 		<div className='mt-10'>
 			<div className='flex flex-col justify-between items-center'>
@@ -30,7 +18,12 @@ const Signup = () => {
 						placeholder='Your Username'
 					/>
 
-					<Button className='bg-slate-800'>Create Profile</Button>
+					<Button
+						onClick={() => login().then((result) => console.log(result))}
+						className='bg-slate-800'
+					>
+						Create Profile
+					</Button>
 				</div>
 			</div>
 		</div>
