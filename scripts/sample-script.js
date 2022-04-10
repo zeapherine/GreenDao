@@ -6,20 +6,59 @@
 const hre = require("hardhat");
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const hub = "0x4BF0c7AD32Fd2d32089790a54485e23f5C7736C0";
+  const Bounty = await hre.ethers.getContractFactory("Bounty");
+  const _bounty = await Bounty.deploy();
 
-  // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  await _bounty.deployed();
 
-  await greeter.deployed();
+  console.log("Bounty deployed to:", _bounty.address);
 
-  console.log("Greeter deployed to:", greeter.address);
+  const DAOCollect = await hre.ethers.getContractFactory("DAOCollectModule");
+  const _daoCollect = await DAOCollect.deploy(hub, _bounty.address);
+
+  await _daoCollect.deployed();
+
+  console.log("DAOCollectModule deployed to:", _daoCollect.address);
+
+  const DAOComment = await hre.ethers.getContractFactory("DAOCommentModule");
+  const _daoComment = await DAOComment.deploy(hub, _bounty.address);
+
+  await _daoComment.deployed();
+
+  console.log("DAOCommentModule deployed to:", _daoComment.address);
+
+  const Router = await hre.ethers.getContractFactory("BountyRouter");
+  const _router = await Router.deploy(_bounty.address, hub);
+
+  await _router.deployed();
+
+  console.log("Bounty deployed to:", _router.address);
+
+  await hre.run("verify:verify", {
+    address: _bounty.address
+  });
+
+  await hre.run("verify:verify", {
+    address: _daoCollect.address,
+    constructorArguments: [
+      hub, _bounty.address
+    ],
+  });
+
+  await hre.run("verify:verify", {
+    address: _daoComment.address,
+    constructorArguments: [
+      hub, _bounty.address
+    ],
+  });
+
+  await hre.run("verify:verify", {
+    address: _router.address,
+    constructorArguments: [
+      _bounty.address, hub 
+    ],
+  });
 }
 
 // We recommend this pattern to be able to use async/await everywhere
