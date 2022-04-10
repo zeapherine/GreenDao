@@ -1,6 +1,30 @@
 import { Button } from '@mantine/core';
+import { gpl, useMutation } from '@apollo/client';
+
+// const CREATE_PROJECT = gpl`
+//     mutation CreateProfile {
+//   createProfile(request:{
+//                 handle: "devjoshstevens",
+//                 profilePictureUri: null,
+//                 followNFTURI: null,
+//                 followModule: null
+//                 }) {
+//     ... on RelayerResult {
+//       txHash
+//     }
+//     ... on RelayError {
+//       reason
+//     }
+//     __typename
+//   }
+// }
+// `;
 
 const CreateProject = () => {
+	// const [] = useMutation(CREATE_PROJECT, {
+
+	// });
+
 	return (
 		<div className='mt-10'>
 			<div className='flex flex-col justify-between items-center'>
