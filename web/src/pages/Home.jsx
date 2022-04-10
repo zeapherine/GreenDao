@@ -2,10 +2,7 @@ import { Button } from '@mantine/core';
 import Card from '../components/Card';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
-
 const Home = () => {
-	
-
 	return (
 		<div className='mt-10'>
 			<div className='flex flex-col justify-center items-start ml-[320px] p-16 pt-28 '>
@@ -34,14 +31,20 @@ const Home = () => {
 						title='Create your Idea into a project, and let others join in to make the
 				world a better place'
 						buttonTitle={'Create your project'}
+						path={'/create'}
 					/>
 
 					<Card
 						title='Fund Projects and get voting powers'
 						buttonTitle={'Fund Projects'}
+						path={'/'}
 					/>
 
-					<Card title='Work on project bounties' buttonTitle={'Bounties'} />
+					<Card
+						title='Work on project bounties'
+						buttonTitle={'Bounties'}
+						path={'/'}
+					/>
 				</div>
 			</div>
 
